@@ -9,7 +9,15 @@ class Listing{ //creates and initilizes object of listing class
     this.description = description;
     //this.location = location; //maybe rename location? 
     } 
+    //instance method that renders object to dom 
+    renderListing() {
+        let listingsDiv = document.getElementById("listings-container")
+
+        listingsDiv.innerHTML += 
+        `<ul>
+        <li>${this.title} - ${this.description}</li>
+        </ul>
+        `
+
+    }
 }
-
-
-//instance method that renders object to dom 
