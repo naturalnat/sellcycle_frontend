@@ -1,13 +1,13 @@
 class Listing{ //creates and initilizes object of listing class
-    constructor(imgsrc, title, brand, year, size, description){
+    constructor(id, imgsrc, brand, year, size, description, title){
 
+    this.id = id; 
     this.imgsrc = imgsrc; 
-    this.title = title; 
     this.brand = brand; 
     this.year = year; 
     this.size = size; 
     this.description = description;
-    //this.location = location; //maybe rename location? 
+    this.title = title; 
     } 
     //instance method that renders object to dom 
     renderListing() {
@@ -15,9 +15,9 @@ class Listing{ //creates and initilizes object of listing class
 
         listingsDiv.innerHTML += 
         `<ul>
-        <li>${this.title} - ${this.description}</li>
+        <li>${this.title} - ${this.imgsrc} - ${this.brand} - ${this.year} - ${this.size} - ${this.description}</li>
         </ul>
         `
-
+        //alternatively could do createElement but I prefer this for readability 
     }
 }
