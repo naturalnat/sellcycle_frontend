@@ -39,7 +39,7 @@ function fetchListings(){
          }
 
          function listingFormSubmit(){
-            event.preventDefault(); //prevents submission w/o values 
+            event.preventDefault(); //prevents submission w/o values - need to fix this, does not work
             let imgsrc = document.getElementById("imgsrc").value
             let brand = document.getElementById("brand").value
             let year = document.getElementById("year").value
@@ -80,4 +80,5 @@ function fetchListings(){
             method: 'DELETE'
         })
     }
+    //todo - deletes from db but does not reflect w/o refresh  
 
