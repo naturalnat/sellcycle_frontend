@@ -61,7 +61,7 @@ function fetchListings(){
                 title: title
             }
 
-            fetch(`${BASE_URL}/listings`, {  //getting 422 error here 
+            fetch(`${BASE_URL}/listings`, {  
                 method: "POST", 
                 headers: {
                     'Accept': 'application/json', 
@@ -77,3 +77,12 @@ function fetchListings(){
          }
          
     // delete - delete listing 
+
+    function deleteUser(){
+        let listingid= parseInt(event.target.dataset.id)
+
+        fetch(`${BASE_URL}/listings/${listingid}`, {
+            method: 'DELETE'
+        })
+    }
+

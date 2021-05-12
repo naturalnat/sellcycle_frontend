@@ -17,6 +17,7 @@ class Listing{ //creates and initilizes object of listing class
         `<ul>
         <li>${this.title} - ${this.imgsrc} - ${this.brand} - ${this.year} - ${this.size} - ${this.description}</li>
         </ul>
+        <button class="delete-button" data-id=${this.id} onclick="deleteUser()">Delete Listing</button>
         `
         //alternatively could do createElement but I prefer this for readability 
     }
