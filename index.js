@@ -19,17 +19,12 @@ function fetchListings(){
 }
 
 
-    // create - create new listing 
-        // -> create form 
-         // -> add event listener 
-         // form submitted => fetch 'post' to back end 
-         // -> do something w/ return object 
-         
+    // create - create new listing        
          function createForm(){
              let listingForm = document.getElementById("listing-form")
-             listingForm.innerHTML += 
+             listingForm.innerHTML += //create form
              `
-             <form>
+             <form> 
                Img Url:<input type="text" id="imgsrc"> <br>
                Brand: <input type="text" id="brand"> <br>
                Year:<input type="text" id="year"> <br>
@@ -38,9 +33,9 @@ function fetchListings(){
                Title: <input type="text" id="title"><br>
                <input type="submit" value="Create Listing">
              </form>
-             `
+             ` 
 
-             listingForm.addEventListener("submit", listingFormSubmit)
+             listingForm.addEventListener("submit", listingFormSubmit) //adds event listener 
          }
 
          function listingFormSubmit(){
@@ -78,7 +73,7 @@ function fetchListings(){
          
     // delete - delete listing 
 
-    function deleteUser(){
+    function deleteListing(){
         let listingid= parseInt(event.target.dataset.id)
 
         fetch(`${BASE_URL}/listings/${listingid}`, {
