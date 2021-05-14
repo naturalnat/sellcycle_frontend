@@ -25,12 +25,12 @@ function fetchListings(){
              listingForm.innerHTML += //create form
              `
              <form> 
-               Img Url:<input type="text" id="imgsrc"> <br>
-               Brand: <input type="text" id="brand"> <br>
-               Year:<input type="text" id="year"> <br>
-               Size:<input type="text" id="size"> <br>
-               Description:<input type="text" id="description"> <br>
-               Title: <input type="text" id="title"><br>
+               Img Url:<input type="text" id="imgsrc" required="required"> <br>
+               Brand: <input type="text" id="brand" required="required"> <br>
+               Year:<input type="text" id="year" required="required"> <br>
+               Size:<input type="text" id="size" required="required"><br>
+               Description:<input type="text" id="description" required="required"> <br>
+               Title: <input type="text" id="title" required="required"><br>
                <input type="submit" value="Create Listing">
              </form>
              ` 
@@ -38,7 +38,7 @@ function fetchListings(){
              listingForm.addEventListener("submit", listingFormSubmit) //adds event listener 
          }
 
-         function listingFormSubmit(){
+         function listingFormSubmit(event){
             event.preventDefault(); //prevents submission w/o values - need to fix this, does not work
             let imgsrc = document.getElementById("imgsrc").value
             let brand = document.getElementById("brand").value
@@ -74,11 +74,12 @@ function fetchListings(){
     // delete - delete listing 
 
     function deleteListing(){
-        let listingid= parseInt(event.target.dataset.id)
+        let listingid = parseInt(event.target.dataset.id)
 
         fetch(`${BASE_URL}/listings/${listingid}`, {
             method: 'DELETE'
         })
+    
     }
     //todo - deletes from db but does not reflect w/o refresh  
-
+    //use remove method for this 

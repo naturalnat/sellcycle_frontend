@@ -10,6 +10,7 @@ class Listing{ //creates and initilizes object of listing class
     this.title = title; 
     } 
     //instance method that renders object to dom 
+  
     renderListing() {
         let listingsDiv = document.getElementById("listings-container")
 
