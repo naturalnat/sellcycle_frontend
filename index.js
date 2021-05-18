@@ -1,23 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
     createForm();
-    fetchListings()
+    fetchListings(); 
+    createUserForm();
 })
 
 const BASE_URL = "http://127.0.0.1:3000"
 
     // read - fetch listing 
-function fetchListings(){
-    fetch(`${BASE_URL}/listings`)
-    .then(res => res.json()) //makes response (listings) json
-    .then(listings => { 
-        for (const listing of listings){ 
-            let l = new Listing(listing.id, listing.imgsrc, listing.brand, listing.year, listing.size, listing.description, listing.title) //creates new JS object from rails obj 
-            console.log(l)
-            l.renderListing(); //listing class instance method 
-        }
-    })
-}
+    function fetchListings(){
 
+        fetch(`${BASE_URL}/listings`)
+        .then(res => res.json()) //makes response (listings) json
+        .then(listings => { 
+            for (const listing of listings){ 
+                let l = new Listing(listing.id, listing.imgsrc, listing.brand, listing.year, listing.size, listing.description, listing.title) //creates new JS object from rails obj 
+                l.renderListing(); //listing class instance method 
+            }
+        })
+    }
 
     // create - create new listing        
          function createForm(){
@@ -72,14 +72,21 @@ function fetchListings(){
          }
          
     // delete - delete listing 
-
+   
     function deleteListing(){
+        
         let listingid = parseInt(event.target.dataset.id)
+  
+        console.log(listingid)
 
         fetch(`${BASE_URL}/listings/${listingid}`, {
             method: 'DELETE'
         })
+        
+        this.location.reload()
+        }
     
-    }
+    
     //todo - deletes from db but does not reflect w/o refresh  
-    //use remove method for this 
+    //use remove method for this    
+    // to do : change listing render to card, then delete by card id 

@@ -15,11 +15,16 @@ class Listing{ //creates and initilizes object of listing class
         let listingsDiv = document.getElementById("listings-container")
 
         listingsDiv.innerHTML += 
-        `<ul>
-        <li>${this.title} - ${this.imgsrc} - ${this.brand} - ${this.year} - ${this.size} - ${this.description}</li>
-        </ul>
+        `
+        <div class="card">  
+        ${this.title} - 
+        <img src ="${this.imgsrc}">
+        <div class="card-body">
+        - ${this.brand} - ${this.year} - ${this.size} - ${this.description}
+        </div>
+        </li>
+  
         <button class="delete-button" data-id=${this.id} onclick="deleteListing()">Delete Listing</button>
         `
-        //alternatively could do createElement but I prefer this for readability 
     }
 }
