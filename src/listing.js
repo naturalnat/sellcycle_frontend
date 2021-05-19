@@ -16,7 +16,7 @@ class Listing{ //creates and initilizes object of listing class
 
         listingsDiv.innerHTML += 
         `
-        <div class="card">  
+        <div class="card" card-id=${this.id}>  
         ${this.title} - 
         <img src ="${this.imgsrc}">
         <div class="card-body">

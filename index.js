@@ -83,7 +83,7 @@ const BASE_URL = "http://127.0.0.1:3000"
             method: 'DELETE'
         })
         
-        this.location.reload()
+        // this.location.reload()
         }
     
     
