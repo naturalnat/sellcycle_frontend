@@ -12,9 +12,15 @@ function createUserForm() {
     userForm.innerHTML += //create form
         `
     <form> 
-      Username:<input type="text" id="username" required="required"> <br>
-      Password: <input type="text" id="password" required="required"> <br>
-      <button class="createbtn" type="submit">Log In</button>
+    <div class="mb-3">
+        <label for="username" class="form-label">Username</label>
+        <input type="text" class="form-control" id="username" required="required" placeholder="johndoe">
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" required="required" placeholder="password">
+    </div>
+    <button class="btn btn-success" type="submit">Log In</button>
     </form>
     `
 
@@ -67,9 +73,6 @@ function userFormLogin(event) {
         .then(resjson => {
             data = resjson
 
-            // localStorage.setItem("user", JSON.stringify(resjson.data));
-            // console.log("storage", localStorage)
-            //let user_name = String(loggedIn.username);
             console.log("loggedin", data)
             if (data.status === 200) {
                 localStorage.setItem('loggedIn.username', data.username);
@@ -77,12 +80,13 @@ function userFormLogin(event) {
                 createListingForm()
                 hideUserForm()
                 renderLoggedInUser()
+
             }
             else {
                 renderFailedLogin()
             }
         }
-    )
+        )
 
 }
 
@@ -98,14 +102,27 @@ function renderLoggedInUser() {
     let loggedInUser = localStorage.getItem('loggedIn.username');
     welcome.innerText = `Welcome ${loggedInUser}!`
     welcome.innerHTML +=
-        ` <button class="logoutbtn" onclick="logout()">Log Out</button>`
+        ` <button class="btn btn-warning" onclick="logout()">Log Out</button>`
+
+
+    const listings = document.getElementById("listings-container");
+    listings.innerHTML = ''
+
+    fetch(`${BASE_URL}/listings`)
+        .then(res => res.json()) //makes response (listings) json
+        .then(listings => {
+            for (const listing of listings) {
+                let l = new Listing(listing.id, listing.imgsrc, listing.brand, listing.year, listing.size, listing.description, listing.title, listing.user_id) //creates new JS object from rails obj 
+                l.renderListing(); //listing class instance method 
+            }
+        })
 }
 
 function renderFailedLogin() {
     alert("Login failed.")
 }
 
-function logout(){
+function logout() {
     localStorage.clear()
     window.location.reload()
 }
