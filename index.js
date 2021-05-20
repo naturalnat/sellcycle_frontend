@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
-    createForm();
+    // createListingForm();
     fetchListings(); 
     createUserForm();
 })
@@ -20,7 +20,7 @@ const BASE_URL = "http://127.0.0.1:3000"
     }
 
     // create - create new listing        
-         function createForm(){
+         function createListingForm(){
              let listingForm = document.getElementById("listing-form")
              listingForm.innerHTML += //create form
              `
@@ -39,7 +39,7 @@ const BASE_URL = "http://127.0.0.1:3000"
          }
 
          function listingFormSubmit(event){
-            event.preventDefault(); //prevents submission w/o values - need to fix this, does not work
+            event.preventDefault(); 
             let imgsrc = document.getElementById("imgsrc").value
             let brand = document.getElementById("brand").value
             let year = document.getElementById("year").value
@@ -77,16 +77,14 @@ const BASE_URL = "http://127.0.0.1:3000"
         
         let listingid = parseInt(event.target.dataset.id)
   
-        console.log(listingid)
-
         fetch(`${BASE_URL}/listings/${listingid}`, {
             method: 'DELETE'
         })
         
         // this.location.reload()
+
         }
     
     
     //todo - deletes from db but does not reflect w/o refresh  
-    //use remove method for this    
-    // to do : change listing render to card, then delete by card id 
+    //use remove method for this

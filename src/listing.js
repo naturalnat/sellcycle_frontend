@@ -16,15 +16,19 @@ class Listing{ //creates and initilizes object of listing class
 
         listingsDiv.innerHTML += 
         `
-        <div class="card" card-id=${this.id}>  
-        ${this.title} - 
-        <img src ="${this.imgsrc}">
+        <div class="row">
+          <div class="column">
+            <div class="card" card-id=${this.id}>  
+        <strong> ${this.title} </strong> <br>
+        <img src="${this.imgsrc}" height=200px width=200px> <br>
         <div class="card-body">
-        - ${this.brand} - ${this.year} - ${this.size} - ${this.description}
-        </div>
-        </li>
-  
+        ${this.brand} - ${this.size} - ${this.year}   <br>
+        ${this.description} 
+        <br>
         <button class="delete-button" data-id=${this.id} onclick="deleteListing()">Delete Listing</button>
+             </div>
+          </div>
+        </div>       
         `
     }
 }
