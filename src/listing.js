@@ -22,7 +22,7 @@ class Listing{ //creates and initilizes object of listing class
         <strong> ${this.title} </strong> <br>
         <img src="${this.imgsrc}" height=200px width=200px> <br>
         <div class="card-body">
-        ${this.brand} - ${this.size} - ${this.year}   <br>
+        ${this.brand} - ${this.year} - size ${this.size}  <br>
         ${this.description} 
         <br>
         <button class="delete-button" data-id=${this.id} onclick="deleteListing()">Delete Listing</button>
