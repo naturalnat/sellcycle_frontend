@@ -24,33 +24,34 @@ function createUserForm() {
     </form>
     `
 
-    userForm.addEventListener("submit", userFormLogin) //adds event listener 
+    userForm.addEventListener("submit", userFormLogin) 
 }
 
 
 //creates new user 
-function userFormCreate(event) {
-    event.preventDefault();
+// function userFormCreate(event) {
+//     event.preventDefault();
 
-    let username = document.getElementById("username").value
-    let password = document.getElementById("password").value
+//     let username = document.getElementById("username").value
+//     let password = document.getElementById("password").value
 
-    let user = { username: username, password: password }
+//     let user = { username: username, password: password }
 
-    fetch(`${BASE_URL}/users`, {
-        method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(user)
-    })
-        .then(res => res.json())
-        .then(user => {
-            let u = new User(user.username, user.password)
-        })
-}
+//     fetch(`${BASE_URL}/users`, {
+//         method: "POST",
+//         headers: {
+//             'Accept': 'application/json',
+//             'Content-Type': 'application/json'
+//         },
+//         body: JSON.stringify(user)
+//     })
+//         .then(res => res.json())
+//         .then(user => {
+//             let u = new User(user.username, user.password)
+//         })
+// }
 
+//log in user 
 
 function userFormLogin(event) {
     event.preventDefault();
@@ -59,7 +60,6 @@ function userFormLogin(event) {
     let password = document.getElementById("password").value;
 
     let user = { username: username, password: password }
-
 
     fetch(`${BASE_URL}/users/login`, {
         method: "POST",
@@ -77,24 +77,15 @@ function userFormLogin(event) {
             if (data.status === 200) {
                 localStorage.setItem('loggedIn.username', data.username);
                 localStorage.setItem('loggedIn.id', data.id);
+
                 createListingForm()
                 hideUserForm()
                 renderLoggedInUser()
-
             }
             else {
                 renderFailedLogin()
             }
-        }
-        )
-
-}
-
-
-function hideUserForm() {
-    let userForm = document.getElementById("user-form")
-
-    userForm.style.display = 'none'
+        })
 }
 
 function renderLoggedInUser() {
@@ -104,18 +95,22 @@ function renderLoggedInUser() {
     welcome.innerHTML +=
         ` <button class="btn btn-warning" onclick="logout()">Log Out</button>`
 
-
     const listings = document.getElementById("listings-container");
     listings.innerHTML = ''
 
     fetch(`${BASE_URL}/listings`)
-        .then(res => res.json()) //makes response (listings) json
+        .then(res => res.json())
         .then(listings => {
             for (const listing of listings) {
-                let l = new Listing(listing.id, listing.imgsrc, listing.brand, listing.year, listing.size, listing.description, listing.title, listing.user_id) //creates new JS object from rails obj 
-                l.renderListing(); //listing class instance method 
+                let l = new Listing(listing.id, listing.imgsrc, listing.brand, listing.year, listing.size, listing.description, listing.title, listing.user_id)
+                l.renderListing(); 
             }
         })
+}
+
+function hideUserForm() {
+    let userForm = document.getElementById("user-form")
+    userForm.style.display = 'none'
 }
 
 function renderFailedLogin() {
