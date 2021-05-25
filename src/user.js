@@ -27,30 +27,6 @@ function createUserForm() {
     userForm.addEventListener("submit", userFormLogin) 
 }
 
-
-//creates new user 
-// function userFormCreate(event) {
-//     event.preventDefault();
-
-//     let username = document.getElementById("username").value
-//     let password = document.getElementById("password").value
-
-//     let user = { username: username, password: password }
-
-//     fetch(`${BASE_URL}/users`, {
-//         method: "POST",
-//         headers: {
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json'
-//         },
-//         body: JSON.stringify(user)
-//     })
-//         .then(res => res.json())
-//         .then(user => {
-//             let u = new User(user.username, user.password)
-//         })
-// }
-
 //log in user 
 
 function userFormLogin(event) {
@@ -89,6 +65,7 @@ function userFormLogin(event) {
 }
 
 function renderLoggedInUser() {
+    console.log('hit renderedlogin')
     let welcome = document.getElementById("welcome")
     let loggedInUser = localStorage.getItem('loggedIn.username');
     welcome.innerText = `Welcome ${loggedInUser}!`
@@ -118,6 +95,7 @@ function renderFailedLogin() {
 }
 
 function logout() {
+    console.log('hit logout')
     localStorage.clear()
     window.location.reload()
 }

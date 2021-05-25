@@ -28,7 +28,7 @@ class Listing {
         ${this.description} 
        `
     if (this.user_id == loggedInUser && loggedInUser != null && this.user_id != null) {
-      listingsDiv.innerHTML += `<button class="delete-button" data-id=${this.id} onclick="logout()">Delete Listing</button>`
+      listingsDiv.innerHTML += `<button class="delete-button" data-id=${this.id} onclick="deleteListing()">Delete Listing</button>`
     }
   }
 }
@@ -90,26 +90,19 @@ function listingFormSubmit(event) {
 }
 
 
-function deleteListing(event) {
+function deleteListing() {
   let listingid = event.target.dataset.id
+  console.log(listingid)
 
   fetch(`${BASE_URL}/listings/${listingid}`, {
       method: 'DELETE'
   })
-  .then(renderNew())
+  .then(res => res.json())
+  .then(resjson => {
+      data = resjson
+
+      if (data.status === 200) {
+        location.reload();
+      }
+  })
 }
-
-function renderNew() { //re-render listings after delete 
-  const listings = document.getElementById("listings-container");
-      listings.innerHTML = ''
-
-      fetch(`${BASE_URL}/listings`)
-      .then(res => res.json()) 
-      .then(listings => {
-          for (const listing of listings) {
-              let l = new Listing(listing.id, listing.imgsrc, listing.brand, listing.year, listing.size, listing.description, listing.title, listing.user_id) 
-              l.renderListing();
-          }
-      })
-}
-

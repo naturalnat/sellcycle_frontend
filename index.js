@@ -1,6 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-    fetchListings();
-    createUserForm();
+    if (localStorage.getItem('loggedIn.username')) {
+        console.log("poo")   
+        createListingForm()
+        hideUserForm()
+        renderLoggedInUser();
+    }
+    else {
+        fetchListings();
+        createUserForm();
+    }
 })
 
 const BASE_URL = "http://127.0.0.1:3000"
