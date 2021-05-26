@@ -47,7 +47,6 @@ function userFormLogin(event) {
         .then(resjson => {
             data = resjson
 
-            console.log("loggedin", data)
             if (data.status === 200) {
                 localStorage.setItem('loggedIn.username', data.username);
                 localStorage.setItem('loggedIn.id', data.id);
@@ -63,7 +62,6 @@ function userFormLogin(event) {
 }
 
 function renderLoggedInUser() {
-    console.log('hit renderedlogin')
     let welcome = document.getElementById("welcome")
     let loggedInUser = localStorage.getItem('loggedIn.username');
     welcome.innerText = `Welcome ${loggedInUser}!`
