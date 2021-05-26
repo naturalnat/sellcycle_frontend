@@ -13,31 +13,47 @@ class Listing {
 
 
   renderListing() {
-    let listingsDiv = document.getElementById("listings-container")
+    let listingsDiv = document.getElementById("card-group")
     let loggedInUser = localStorage.getItem('loggedIn.id');
 
-    listingsDiv.innerHTML +=
-      `
-        <div class="row">
-          <div class="column">
-            <div class="card" card-id=${this.id}>  
-        <strong> ${this.title} </strong> <br>
-        <img src="${this.imgsrc}" height=200px width=200px> <br>
-        <div class="card-body">
-        ${this.brand} - ${this.year} - size ${this.size}  <br>
-        ${this.description} 
-       `
     if (this.user_id == loggedInUser && loggedInUser != null && this.user_id != null) {
-      listingsDiv.innerHTML += `<button class="delete-button" data-id=${this.id} onclick="deleteListing()">Delete Listing</button>`
+      listingsDiv.innerHTML +=
+        `<div class="card">
+        <img class="card-img-top" src="${this.imgsrc}">
+        <div class="card-body">
+          <h5 class="card-title">${this.title}</h5>
+          <p class="card-text">${this.description}.</p>
+        </div>
+        <div class="card-footer">
+          <small class="text-muted">${this.brand} - ${this.year} - size ${this.size} </small>
+          <a href="#" data-id=${this.id} onclick="deleteListing()" >Delete Listing</a>
+        </div></div>`
+    } else {
+      listingsDiv.innerHTML += `<div class="card">
+      <img class="card-img-top" src="${this.imgsrc}">
+      <div class="card-body">
+        <h5 class="card-title">${this.title}</h5>
+        <p class="card-text">${this.description}.</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-muted">${this.brand} - ${this.year} - size ${this.size} </small>
+      </div></div>`
     }
+
+
+
+    // if (this.user_id == loggedInUser && loggedInUser != null && this.user_id != null) {
+    //   listingsDiv.innerHTML += 
+    //   `<span class="delete-button btn btn-light" data-id=${this.id} onclick="deleteListing()">Delete Listing</span>`
+    // }
   }
 }
 
 
 function createListingForm() {
   let listingForm = document.getElementById("listing-form")
-  listingForm.innerHTML += 
-      `
+  listingForm.innerHTML +=
+    `
            <form> 
              <input type="text" id="title" required="required" placeholder="title"><br>
              <input type="text" id="imgsrc" required="required" placeholder="image url"> <br>
@@ -50,7 +66,7 @@ function createListingForm() {
            </form>
            `
 
-  listingForm.addEventListener("submit", listingFormSubmit) 
+  listingForm.addEventListener("submit", listingFormSubmit)
 }
 
 function listingFormSubmit(event) {
@@ -65,44 +81,45 @@ function listingFormSubmit(event) {
 
 
   let listing = {
-      imgsrc: imgsrc,
-      brand: brand,
-      year: year,
-      size: size,
-      description: description,
-      title: title,
-      user_id: user_id
+    imgsrc: imgsrc,
+    brand: brand,
+    year: year,
+    size: size,
+    description: description,
+    title: title,
+    user_id: user_id
   }
 
   fetch(`${BASE_URL}/listings`, {
-      method: "POST",
-      headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(listing)
+    method: "POST",
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(listing)
   })
-      .then(res => res.json())
-      .then(listing => {
-          let l = new Listing(listing.id, listing.imgsrc, listing.brand, listing.year, listing.size, listing.description, listing.title, listing.user_id)
-          l.renderListing();
-      })
+    .then(res => res.json())
+    .then(listing => {
+      let l = new Listing(listing.id, listing.imgsrc, listing.brand, listing.year, listing.size, listing.description, listing.title, listing.user_id)
+      l.renderListing();
+    })
 }
 
 
 function deleteListing() {
   let listingid = event.target.dataset.id
-  console.log(listingid)
 
   fetch(`${BASE_URL}/listings/${listingid}`, {
-      method: 'DELETE'
+    method: 'DELETE'
   })
-  .then(res => res.json())
-  .then(resjson => {
+    .then(res => res.json())
+    .then(resjson => {
       data = resjson
 
       if (data.status === 200) {
         location.reload();
       }
-  })
+    })
 }
+
+

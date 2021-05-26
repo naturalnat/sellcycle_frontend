@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
     if (localStorage.getItem('loggedIn.username')) {
-        console.log("poo")   
         createListingForm()
         hideUserForm()
         renderLoggedInUser();

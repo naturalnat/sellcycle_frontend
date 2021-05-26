@@ -9,7 +9,7 @@ class User {
 function createUserForm() {
     let userForm = document.getElementById("user-form")
 
-    userForm.innerHTML += //create form
+    userForm.innerHTML += 
         `
     <form> 
     <div class="mb-3">
@@ -26,8 +26,6 @@ function createUserForm() {
 
     userForm.addEventListener("submit", userFormLogin) 
 }
-
-//log in user 
 
 function userFormLogin(event) {
     event.preventDefault();
@@ -72,7 +70,7 @@ function renderLoggedInUser() {
     welcome.innerHTML +=
         ` <button class="btn btn-warning" onclick="logout()">Log Out</button>`
 
-    const listings = document.getElementById("listings-container");
+    const listings = document.getElementById("card-group");
     listings.innerHTML = ''
 
     fetch(`${BASE_URL}/listings`)
@@ -95,7 +93,6 @@ function renderFailedLogin() {
 }
 
 function logout() {
-    console.log('hit logout')
     localStorage.clear()
     window.location.reload()
 }
