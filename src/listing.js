@@ -39,13 +39,6 @@ class Listing {
         <small class="text-muted">${this.brand} - ${this.year} - size ${this.size} </small>
       </div></div>`
     }
-
-
-
-    // if (this.user_id == loggedInUser && loggedInUser != null && this.user_id != null) {
-    //   listingsDiv.innerHTML += 
-    //   `<span class="delete-button btn btn-light" data-id=${this.id} onclick="deleteListing()">Delete Listing</span>`
-    // }
   }
 }
 
