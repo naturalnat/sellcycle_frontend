@@ -25,8 +25,9 @@ class Listing {
           <p class="card-text">${this.description}.</p>
         </div>
         <div class="card-footer">
-          <small class="text-muted">${this.brand} - ${this.year} - size ${this.size} </small>
-          <a href="#" data-id=${this.id} onclick="deleteListing()" >Delete Listing</a>
+          <small class="text-muted">${this.brand} - ${this.year} - size ${this.size} 
+          <a href="#" style="float:right;" data-id=${this.id} onclick="deleteListing()">Delete Listing</a>
+          </small>
         </div></div>`
     } else {
       listingsDiv.innerHTML += `<div class="card">
@@ -36,7 +37,8 @@ class Listing {
         <p class="card-text">${this.description}.</p>
       </div>
       <div class="card-footer">
-        <small class="text-muted">${this.brand} - ${this.year} - size ${this.size} </small>
+        <small class="text-muted">${this.brand} - ${this.year} - size ${this.size}  
+        <a href="mailto:${this.user_id}@fake.me" style="float:right;">Contact Seller</a></small>
       </div></div>`
     }
   }
