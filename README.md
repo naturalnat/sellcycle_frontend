@@ -3,6 +3,7 @@
 
 This is the frontend for Sellcycle. Sellcycle is built with JavaScript frontend and a Rails API backend. It is a marketplace for buying and selling bicycles based on Craigslist and Poshmark.  
 
+The backend can be found here: https://github.com/naturalnat/sellcycle_backend
 
 # installation 
 
