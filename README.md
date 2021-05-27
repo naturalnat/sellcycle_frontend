@@ -19,11 +19,11 @@ $ rails server
 Navigate to index.html to interact with the frontend. 
 
 From here, the user can: 
-    sign in 
-    browse listings
+    sign in,
+    browse listings,
     contact seller
 
 When signed in, the user can access additional features:
-    create a listing
+    create a listing,
     delete their listing
 
