@@ -34,7 +34,7 @@ class Listing {
       <img class="card-img-top" src="${this.imgsrc}">
       <div class="card-body">
         <h5 class="card-title">${this.title}</h5>
-        <p class="card-text">${this.description}.</p>
+        <p class="card-text">${this.description}</p>
       </div>
       <div class="card-footer">
         <small class="text-muted">${this.brand} - ${this.year} - size ${this.size}  
@@ -102,7 +102,13 @@ function listingFormSubmit(event) {
 
 
 function deleteListing() {
+
   let listingid = event.target.dataset.id
+  console.log(listingid)
+
+  card = event.target.parentElement.parentElement.parentElement
+ 
+  console.log(card)
 
   fetch(`${BASE_URL}/listings/${listingid}`, {
     method: 'DELETE'
@@ -112,7 +118,7 @@ function deleteListing() {
       data = resjson
 
       if (data.status === 200) {
-        location.reload();
+        card.remove()
       }
     })
 }
